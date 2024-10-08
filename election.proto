@@ -1,0 +1,34 @@
+syntax = "proto3";
+
+package election;
+
+service ElectionService {
+  rpc SubmitElectionData (ElectionRequest) returns (ElectionReply);
+}
+
+message ElectionRequest {
+  int32 regionID = 1;
+  string regionName = 2;
+  string regionAddress = 3;
+  string regionPostalCodes = 4;
+  string federalState = 5;
+  string timeStamp = 6;
+  repeated PartyVotes electionData = 7;
+  repeated PreferenceVotes preferenceData = 8; 
+}
+
+
+message PartyVotes {
+  string name = 1;
+  int32 votes = 2;
+}
+
+message PreferenceVotes {
+  string name = 1;
+  int32 votes= 2;
+}
+
+//reply message if success
+message ElectionReply {
+  string confirmation = 1;
+}
